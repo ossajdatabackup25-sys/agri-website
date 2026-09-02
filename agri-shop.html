@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>किसान सेवा केंद्र — बीज, खाद, यंत्र और फसल बिक्री</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700;800&family=Noto+Sans+Devanagari:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --soil:#3B2A1A;
+    --soil-soft:#5B432B;
+    --cream:#F6EFDD;
+    --cream-deep:#EFE4C6;
+    --leaf:#3F6B35;
+    --leaf-deep:#2E4E27;
+    --leaf-pale:#E4EEDD;
+    --marigold:#E8A33D;
+    --marigold-deep:#C87F1F;
+    --sky:#3E7C96;
+    --sky-pale:#DCEDF2;
+    --brick:#B5473A;
+    --white:#FFFDF8;
+    --radius-card: 18px;
+    --radius-pill: 999px;
+  }
+
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--cream);
+    color:var(--soil);
+    font-family:'Noto Sans Devanagari','Hind',sans-serif;
+    font-size:18px;
+    line-height:1.6;
+  }
+  h1,h2,h3,.display{
+    font-family:'Baloo 2','Noto Sans Devanagari',sans-serif;
+    font-weight:700;
+    color:var(--leaf-deep);
+    margin:0;
+  }
+  img{max-width:100%;display:block;}
+  a{color:inherit;text-decoration:none;}
+  ul{margin:0;padding:0;list-style:none;}
+  button{font-family:inherit;}
+
+  .wrap{max-width:480px;margin:0 auto;position:relative;}
+  @media (min-width:760px){ .wrap{max-width:720px;} }
+
+  /* ---------- Top bar ---------- */
+  .topbar{
+    background:var(--leaf-deep);
+    color:var(--white);
+    padding:10px 20px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    font-size:15px;
+  }
+  .topbar .phone-link{display:flex;align-items:center;gap:6px;font-weight:600;}
+
+  header.hero{
+    background:
+      radial-gradient(120% 90% at 15% 0%, #FBF3DA 0%, transparent 55%),
+      linear-gradient(180deg, var(--cream) 0%, var(--cream) 100%);
+    padding:26px 20px 34px;
+    position:relative;
+    overflow:hidden;
+    border-bottom:3px solid var(--cream-deep);
+  }
+  .shop-name{
+    font-size:26px;
+    letter-spacing:0.2px;
+  }
+  .shop-name span{color:var(--marigold-deep);}
+  .tagline{
+    margin-top:6px;
+    font-size:16px;
+    color:var(--soil-soft);
+  }
+
+  .hero-figure{
+    margin-top:22px;
+    background:linear-gradient(160deg, var(--leaf) 0%, var(--leaf-deep) 100%);
+    border-radius: 22px;
+    padding:26px 22px;
+    color:var(--white);
+    position:relative;
+  }
+  .hero-figure .crop-row{
+    font-size:34px;
+    letter-spacing:8px;
+    opacity:0.9;
+    margin-bottom:14px;
+  }
+  .hero-figure h2{
+    color:var(--white);
+    font-size:23px;
+    line-height:1.4;
+  }
+  .hero-figure p{
+    color:#E7F1E2;
+    font-size:16px;
+    margin-top:8px;
+  }
+  .cta-row{
+    margin-top:20px;
+    display:flex;
+    gap:12px;
+    flex-wrap:wrap;
+  }
+  .btn{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    padding:14px 20px;
+    border-radius:var(--radius-pill);
+    font-weight:700;
+    font-size:16px;
+    border:none;
+    cursor:pointer;
+  }
+  .btn-call{
+    background:var(--marigold);
+    color:var(--soil);
+  }
+  .btn-whatsapp{
+    background:#ffffff;
+    color:var(--leaf-deep);
+  }
+  .btn-icon{font-size:19px;}
+
+  /* ---------- Section shell ---------- */
+  section{padding:34px 20px;}
+  .section-head{margin-bottom:18px;}
+  .section-head h2{font-size:22px;}
+  .section-head p{
+    margin-top:6px;
+    color:var(--soil-soft);
+    font-size:15px;
+  }
+
+  /* ---------- Category cards ---------- */
+  .cat-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:14px;
+  }
+  .cat-card{
+    background:var(--white);
+    border:2px solid var(--cream-deep);
+    border-radius:var(--radius-card);
+    padding:18px 14px;
+    display:flex;
+    flex-direction:column;
+    gap:8px;
+  }
+  .cat-card .icon{
+    width:46px;height:46px;
+    border-radius:14px;
+    display:flex;align-items:center;justify-content:center;
+    font-size:24px;
+  }
+  .cat-card h3{font-size:17px;color:var(--soil);}
+  .cat-card p{font-size:13.5px;color:var(--soil-soft);margin:0;}
+  .ic-1{background:var(--leaf-pale);}
+  .ic-2{background:var(--sky-pale);}
+  .ic-3{background:#FBE7D6;}
+  .ic-4{background:#F4E4E1;}
+
+  /* ---------- Sell produce banner ---------- */
+  .sell-banner{
+    background:var(--marigold);
+    border-radius:20px;
+    padding:22px;
+    color:var(--soil);
+  }
+  .sell-banner h3{font-size:19px;color:var(--soil);}
+  .sell-banner p{font-size:15px;margin-top:6px;color:#5A4020;}
+  .sell-banner .btn{
+    margin-top:14px;
+    background:var(--soil);
+    color:var(--white);
+  }
+
+  /* ---------- Trust strip ---------- */
+  .trust-strip{
+    display:flex;
+    overflow-x:auto;
+    gap:12px;
+    padding-bottom:4px;
+  }
+  .trust-item{
+    flex:0 0 auto;
+    background:var(--white);
+    border-radius:16px;
+    padding:14px 16px;
+    min-width:150px;
+    border:2px solid var(--cream-deep);
+    text-align:center;
+  }
+  .trust-item .num{
+    font-family:'Baloo 2',sans-serif;
+    font-size:22px;
+    color:var(--leaf-deep);
+    font-weight:700;
+  }
+  .trust-item .lbl{font-size:13px;color:var(--soil-soft);margin-top:2px;}
+
+  /* ---------- Steps ---------- */
+  .steps{display:flex;flex-direction:column;gap:16px;}
+  .step{
+    display:flex;
+    gap:14px;
+    align-items:flex-start;
+  }
+  .step .badge{
+    flex:0 0 auto;
+    width:36px;height:36px;
+    border-radius:50%;
+    background:var(--leaf);
+    color:var(--white);
+    display:flex;align-items:center;justify-content:center;
+    font-weight:700;
+    font-family:'Baloo 2',sans-serif;
+  }
+  .step h4{font-size:16.5px;margin:0 0 3px;color:var(--soil);}
+  .step p{font-size:14.5px;color:var(--soil-soft);margin:0;}
+
+  /* ---------- Testimonials ---------- */
+  .testi-scroll{
+    display:flex;
+    overflow-x:auto;
+    gap:14px;
+    padding-bottom:6px;
+  }
+  .testi-card{
+    flex:0 0 82%;
+    background:var(--sky-pale);
+    border-radius:18px;
+    padding:18px;
+  }
+  .testi-card p.quote{font-size:15px;color:var(--soil);}
+  .testi-card .who{
+    margin-top:12px;
+    font-size:13.5px;
+    color:var(--sky);
+    font-weight:600;
+  }
+
+  /* ---------- Contact / footer ---------- */
+  .contact-block{
+    background:var(--leaf-deep);
+    color:var(--white);
+    border-radius:20px;
+    padding:26px 22px;
+  }
+  .contact-block h3{color:var(--white);font-size:19px;}
+  .contact-line{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    margin-top:14px;
+    font-size:15.5px;
+  }
+  .contact-line .ci{font-size:19px;}
+  .contact-block .btn-call{margin-top:18px;width:100%;justify-content:center;}
+
+  footer{
+    text-align:center;
+    padding:22px 20px 34px;
+    color:var(--soil-soft);
+    font-size:13px;
+  }
+
+  .floating-wa{
+    position:fixed;
+    right:18px;
+    bottom:18px;
+    background:#2E4E27;
+    color:#fff;
+    width:56px;height:56px;
+    border-radius:50%;
+    display:flex;align-items:center;justify-content:center;
+    font-size:26px;
+    box-shadow:0 6px 18px rgba(0,0,0,0.25);
+    z-index:50;
+  }
+
+  @media (min-width:760px){
+    .cat-grid{grid-template-columns:repeat(4,1fr);}
+    .testi-card{flex:0 0 46%;}
+  }
+</style>
+</head>
+<body>
+
+<div class="topbar wrap">
+  <div>सोमवार–रविवार, सुबह 8 – रात 8</div>
+  <a class="phone-link" href="tel:+917379992895">📞 73799-92895</a>
+</div>
+
+<div class="wrap">
+
+  <header class="hero">
+    <div class="shop-name">किसान <span>सेवा केंद्र</span></div>
+    <div class="tagline">आपके गाँव का अपना कृषि केंद्र — बीज से बिक्री तक</div>
+
+    <div class="hero-figure">
+      <div class="crop-row">🌾 🌱 🚜 🌽</div>
+      <h2>अच्छी फसल की शुरुआत, सही सलाह और सही सामान से</h2>
+      <p>बीज, खाद, दवा और यंत्र — एक ही जगह, अपनी भाषा में पूरी जानकारी के साथ।</p>
+      <div class="cta-row">
+        <a class="btn btn-call" href="tel:+917379992895"><span class="btn-icon">📞</span> कॉल करें</a>
+        <a class="btn btn-whatsapp" href="https://wa.me/917379992895?text=नमस्ते%2C%20मुझे%20जानकारी%20चाहिए" target="_blank" rel="noopener"><span class="btn-icon">💬</span> WhatsApp पर पूछें</a>
+      </div>
+    </div>
+  </header>
+
+  <section>
+    <div class="section-head">
+      <h2>हमारे पास क्या-क्या मिलता है</h2>
+      <p>जो चाहिए वो चुनें, बाकी हम संभाल लेंगे</p>
+    </div>
+    <div class="cat-grid">
+      <div class="cat-card">
+        <div class="icon ic-1">🌱</div>
+        <h3>बीज</h3>
+        <p>हर मौसम के प्रमाणित बीज</p>
+      </div>
+      <div class="cat-card">
+        <div class="icon ic-2">🧪</div>
+        <h3>खाद और दवा</h3>
+        <p>मिट्टी और फसल के अनुसार सलाह</p>
+      </div>
+      <div class="cat-card">
+        <div class="icon ic-3">🚜</div>
+        <h3>कृषि यंत्र</h3>
+        <p>किराए पर और खरीदने के लिए</p>
+      </div>
+      <div class="cat-card">
+        <div class="icon ic-4">📦</div>
+        <h3>फसल बिक्री</h3>
+        <p>अपनी फसल का सही दाम पाएं</p>
+      </div>
+    </div>
+  </section>
+
+  <section style="padding-top:4px;">
+    <div class="sell-banner">
+      <h3>इस बार फसल बेचनी है?</h3>
+      <p>अपनी फसल की मात्रा और जगह बताएं, हम आपको मंडी भाव और खरीदार से जोड़ेंगे।</p>
+      <a class="btn" href="https://wa.me/917379992895?text=मुझे%20अपनी%20फसल%20बेचनी%20है" target="_blank" rel="noopener">📦 फसल की जानकारी भेजें</a>
+    </div>
+  </section>
+
+  <section style="padding-top:0;">
+    <div class="section-head">
+      <h2>हमारे किसान भाइयों का भरोसा</h2>
+    </div>
+    <div class="trust-strip">
+      <div class="trust-item"><div class="num">1200+</div><div class="lbl">किसान परिवार जुड़े</div></div>
+      <div class="trust-item"><div class="num">15 गाँव</div><div class="lbl">आस-पास सेवा</div></div>
+      <div class="trust-item"><div class="num">10 साल</div><div class="lbl">गाँव में सेवा</div></div>
+      <div class="trust-item"><div class="num">घर तक</div><div class="lbl">डिलीवरी सुविधा</div></div>
+    </div>
+  </section>
+
+  <section style="padding-top:0;">
+    <div class="section-head">
+      <h2>कैसे मिलेगा सामान</h2>
+      <p>तीन आसान कदम</p>
+    </div>
+    <div class="steps">
+      <div class="step">
+        <div class="badge">1</div>
+        <div>
+          <h4>कॉल या WhatsApp करें</h4>
+          <p>अपनी फसल और ज़रूरत बताएं</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="badge">2</div>
+        <div>
+          <h4>सही सलाह पाएं</h4>
+          <p>हमारा स्टाफ सही बीज, खाद और मात्रा बताएगा</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="badge">3</div>
+        <div>
+          <h4>घर बैठे सामान पाएं</h4>
+          <p>दुकान आएं या गाँव में डिलीवरी लें</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section style="padding-top:0;">
+    <div class="section-head">
+      <h2>किसानों की बात</h2>
+    </div>
+    <div class="testi-scroll">
+      <div class="testi-card">
+        <p class="quote">"इस बार खाद की सही मात्रा पता चली, फसल पहले से अच्छी हुई।"</p>
+        <div class="who">— रामलाल, गेहूं किसान</div>
+      </div>
+      <div class="testi-card">
+        <p class="quote">"WhatsApp पर पूछते ही तुरंत जवाब मिल जाता है, दुकान तक जाना नहीं पड़ता।"</p>
+        <div class="who">— सुनीता देवी, सब्जी किसान</div>
+      </div>
+      <div class="testi-card">
+        <p class="quote">"फसल बेचने में भी मदद मिली, अच्छा भाव मिला।"</p>
+        <div class="who">— मोहन सिंह, धान किसान</div>
+      </div>
+    </div>
+  </section>
+
+  <section style="padding-top:0;">
+    <div class="contact-block">
+      <h3>हमसे जुड़ें</h3>
+      <div class="contact-line"><span class="ci">📍</span> गौरा कलां, वाराणसी – 221112</div>
+      <div class="contact-line"><span class="ci">📞</span> 73799-92895</div>
+      <div class="contact-line"><span class="ci">🕒</span> सोमवार–रविवार, सुबह 8 – रात 8</div>
+      <a class="btn btn-call" href="tel:+917379992895">📞 अभी कॉल करें</a>
+    </div>
+  </section>
+
+  <footer>
+    किसान सेवा केंद्र — गाँव के लिए, गाँव वालों के साथ
+  </footer>
+
+</div>
+
+<a class="floating-wa" href="https://wa.me/917379992895" target="_blank" rel="noopener" aria-label="WhatsApp पर संपर्क करें">💬</a>
+
+</body>
+</html>
